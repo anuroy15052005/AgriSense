@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 folders = [
     "backend",
@@ -22,9 +22,11 @@ files = [
     ".dockerignore"
 ]
 for folder in folders:
-    os.makedirs(folder, exist_ok=True)
+    Path(folder).mkdir(parents=True, exist_ok=True)
+
 for file in files:
-    with open(file, "w", encoding="utf-8") as f:
-        pass
+    path = Path(file)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.touch(exist_ok=True)
 
 print("Project files created successfully.")

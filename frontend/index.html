@@ -1,65 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriSense - Crop Recommendation</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>AgriSense | Crop Recommendation</title>
+
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <nav class="navbar">
+        <div class="logo">
+            <span>🌱</span> AgriSense
+        </div>
 
-        <h1>🌱 AgriSense</h1>
-        <p>Smart Crop Recommendation System</p>
+        <div class="nav-text">
+            AI-Powered Crop Recommendation
+        </div>
+    </nav>
 
-        <form id="predictionForm">
 
-            <div class="form-group">
-                <label for="N">Nitrogen (N)</label>
-                <input type="number" id="N" step="any" required>
+    <main>
+
+        <section class="hero">
+
+            <div class="badge">
+                Machine Learning for Agriculture
             </div>
 
-            <div class="form-group">
-                <label for="P">Phosphorus (P)</label>
-                <input type="number" id="P" step="any" required>
+            <h1>
+                Find the Right Crop<br>
+                for Your Field
+            </h1>
+
+            <p>
+                Enter your soil and environmental conditions to get
+                a data-driven crop recommendation.
+            </p>
+
+        </section>
+
+
+        <section class="prediction-card">
+
+            <div class="card-header">
+                <h2>Crop Recommendation</h2>
+
+                <p>
+                    Enter the conditions of your agricultural field.
+                </p>
             </div>
 
-            <div class="form-group">
-                <label for="K">Potassium (K)</label>
-                <input type="number" id="K" step="any" required>
-            </div>
 
-            <div class="form-group">
-                <label for="temperature">Temperature (°C)</label>
-                <input type="number" id="temperature" step="any" required>
-            </div>
+            <form id="predictionForm">
 
-            <div class="form-group">
-                <label for="humidity">Humidity (%)</label>
-                <input type="number" id="humidity" step="any" required>
-            </div>
+                <div class="input-grid">
 
-            <div class="form-group">
-                <label for="ph">Soil pH</label>
-                <input type="number" id="ph" step="any" required>
-            </div>
+                    <div class="input-group">
+                        <label for="N">
+                            Nitrogen
+                            <span>N</span>
+                        </label>
 
-            <div class="form-group">
-                <label for="rainfall">Rainfall (mm)</label>
-                <input type="number" id="rainfall" step="any" required>
-            </div>
+                        <input
+                            type="number"
+                            id="N"
+                            placeholder="e.g. 90"
+                            step="any"
+                            min="0"
+                            required
+                        >
+                    </div>
 
-            <button type="submit">Recommend Crop</button>
 
-        </form>
+                    <div class="input-group">
+                        <label for="P">
+                            Phosphorus
+                            <span>P</span>
+                        </label>
 
-        <div id="result"></div>
+                        <input
+                            type="number"
+                            id="P"
+                            placeholder="e.g. 42"
+                            step="any"
+                            min="0"
+                            required
+                        >
+                    </div>
 
-    </div>
 
-    <script src="script.js"></script>
+                    <div class="input-group">
+                        <label for="K">
+                            Potassium
+                            <span>K</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="K"
+                            placeholder="e.g. 43"
+                            step="any"
+                            min="0"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="temperature">
+                            Temperature
+                            <span>°C</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="temperature"
+                            placeholder="e.g. 25"
+                            step="any"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="humidity">
+                            Humidity
+                            <span>%</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="humidity"
+                            placeholder="e.g. 80"
+                            step="any"
+                            min="0"
+                            max="100"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="ph">
+                            Soil pH
+                            <span>pH</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="ph"
+                            placeholder="e.g. 6.5"
+                            step="any"
+                            min="0"
+                            max="14"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="input-group rainfall-input">
+                        <label for="rainfall">
+                            Rainfall
+                            <span>mm</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="rainfall"
+                            placeholder="e.g. 200"
+                            step="any"
+                            min="0"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <button type="submit" id="predictButton">
+                    <span id="buttonText">Recommend Crop</span>
+                </button>
+
+            </form>
+
+
+            <div id="result" class="result hidden"></div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        AgriSense · Intelligent Crop Recommendation System
+    </footer>
+
+
+    <script src="/script.js"></script>
 
 </body>
+
 </html>

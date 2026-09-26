@@ -1,23 +1,26 @@
 const form = document.getElementById("predictionForm");
+const button = document.getElementById("predictButton");
+const buttonText = document.getElementById("buttonText");
 const result = document.getElementById("result");
-
-const fields = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"];
 
 form.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
-    const data = Object.fromEntries(fields.map((field) => [
-        field,
-        Number(document.getElementById(field).value)
-    ]));
+    const data = {
+        N: parseFloat(document.getElementById("N").value),
+        P: parseFloat(document.getElementById("P").value),
+        K: parseFloat(document.getElementById("K").value),
+        temperature: parseFloat(document.getElementById("temperature").value),
+        humidity: parseFloat(document.getElementById("humidity").value),
+        ph: parseFloat(document.getElementById("ph").value),
+        rainfall: parseFloat(document.getElementById("rainfall").value)
+    };
 
-    if (Object.values(data).some((value) => !Number.isFinite(value))) {
-        result.textContent = "Please enter valid numbers in every field.";
-        return;
-    }
+    button.disabled = true;
+    buttonText.textContent = "Predicting...";
 
-    result.innerHTML = "Predicting...";
+    result.classList.add("hidden");
 
     try {
 
@@ -31,21 +34,33 @@ form.addEventListener("submit", async function (event) {
 
         const output = await response.json();
 
-        if (response.ok) {
-            result.replaceChildren();
-            const heading = document.createElement("h2");
-            heading.textContent = "Recommended Crop";
-            const crop = document.createElement("p");
-            crop.textContent = output.crop;
-            result.append(heading, crop);
-        } else {
-            result.textContent = `Error: ${output.error || "Prediction failed."}`;
+        if (!response.ok) {
+            throw new Error(output.error || "Prediction failed");
         }
+
+        result.innerHTML = `
+            <h2>Recommended Crop</h2>
+            <div class="crop-name">${output.crop}</div>
+            <p>Based on the soil and environmental conditions provided.</p>
+        `;
+
+        result.classList.remove("hidden");
 
     } catch (error) {
 
-        result.textContent = "Unable to connect to the server.";
+        result.innerHTML = `
+            <h2>Something went wrong</h2>
+            <p>${error.message}</p>
+        `;
 
-        console.error(error);
+        result.classList.remove("hidden");
+
+        console.error("Prediction error:", error);
+
+    } finally {
+
+        button.disabled = false;
+        buttonText.textContent = "Recommend Crop";
+
     }
 });

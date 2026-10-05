@@ -49,9 +49,8 @@ The trained Random Forest model then predicts the most suitable crop from **22 c
 
 **AgriSense is deployed on Render.**
 
-👉 **[Open the live application](YOUR_RENDER_URL_HERE)**
+👉 **[Open the live application](https://agrisense-ysmz.onrender.com/)**
 
-> Replace `YOUR_RENDER_URL_HERE` with your actual Render URL.
 
 ---
 

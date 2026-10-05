@@ -17,6 +17,8 @@ form.addEventListener("submit", async function (event) {
         rainfall: parseFloat(document.getElementById("rainfall").value)
     };
 
+    console.log("Data being sent:", data);
+
     button.disabled = true;
     buttonText.textContent = "Predicting...";
 
